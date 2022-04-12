@@ -1,0 +1,61 @@
+###
+
+
+GET http://localhost:4000/
+
+
+
+###
+
+
+GET http://localhost:4000/post
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGQ0YmFhZGNmZjM0ODMyZmZmMzBhNiIsImlhdCI6MTY0NTA0MDUxNSwiZXhwIjoxNjQ1MDQwNTQ1fQ.MxJ76Q6D3tiFP7i6pe1zEogk_cnvsRYcxXBHwsmA_rQ
+###
+
+
+GET http://localhost:4000/post/620d3347abfb42d96325fcc5
+
+###
+
+
+POST http://localhost:4000/post
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGQ0YmFhZGNmZjM0ODMyZmZmMzBhNiIsImlhdCI6MTY0NTA0MDcxMiwiZXhwIjoxNjQ1MDQwNzQyfQ.J5n0F-8aTZrlqtjcRfcD4SXTzDWA1iaIsIxwplB5964
+Content-Type: application/json
+
+{
+    "message" : "this is my authorized new post",
+    "sender" : "Eliav"
+}
+
+###
+
+
+POST http://localhost:4000/auth/register
+Content-Type: application/json
+
+{
+    "email" : "a@a.com",
+    "password" : "12345"
+}
+
+###
+
+
+POST http://localhost:4000/auth/login
+Content-Type: application/json
+
+{
+    "email" : "a@a.com",
+    "password" : "12345"
+}
+
+###
+
+
+POST http://localhost:4000/auth/logout
+Content-Type: application/json
+
+{
+    "message" : "this is my new post",
+    "sender" : "Eliav"
+}

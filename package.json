@@ -1,0 +1,28 @@
+{
+  "name": "amazol-be",
+  "version": "1.0.0",
+  "description": "Amazol BE",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devstart": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamN3M/Amazol-BE.git"
+  },
+  "author": "N3M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamN3M/Amazol-BE/issues"
+  },
+  "homepage": "https://github.com/TeamN3M/Amazol-BE#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
