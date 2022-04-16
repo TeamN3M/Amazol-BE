@@ -9,7 +9,7 @@ GET http://localhost:4000/
 
 
 GET http://localhost:4000/post
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGQ0YmFhZGNmZjM0ODMyZmZmMzBhNiIsImlhdCI6MTY0NTA0MDUxNSwiZXhwIjoxNjQ1MDQwNTQ1fQ.MxJ76Q6D3tiFP7i6pe1zEogk_cnvsRYcxXBHwsmA_rQ
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWE4YzE2ODVhZDZhZTM1NGJiZjQzMCIsImlhdCI6MTY1MDEwODkzNywiZXhwIjoxNjUwMTEyNTM3fQ.M3tlyFXkU7Qc1Jo_vfck5hQnJEu_PxqPftmFoDtnW5E
 ###
 
 
@@ -19,6 +19,7 @@ GET http://localhost:4000/post/62557ee28a121576951e3127
 
 
 POST http://localhost:4000/post
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWE4YzE2ODVhZDZhZTM1NGJiZjQzMCIsImlhdCI6MTY1MDEwODkzNywiZXhwIjoxNjUwMTEyNTM3fQ.M3tlyFXkU7Qc1Jo_vfck5hQnJEu_PxqPftmFoDtnW5E
 Content-Type: application/json
 
 {
@@ -32,8 +33,11 @@ POST http://localhost:4000/auth/register
 Content-Type: application/json
 
 {
+    "firstname" :"matan",
+    "lastname" :"sofer" ,
     "email" : "a@a.com",
-    "password" : "12345"
+    "password" : "12345", 
+    "isadmin":false 
 }
 
 ###

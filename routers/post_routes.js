@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const post = require("../controllers/posts");
-
+const authenticate = require("../common/auth_middleware");
 /**
  * @swagger
  * tags:
@@ -30,7 +30,7 @@ const post = require("../controllers/posts");
  *         sender: '123456'
  */
 
-router.get("/", post.getPosts);
+router.get("/", authenticate, post.getPosts);
 /**
  * @swagger
  * /post/{id}:
@@ -52,7 +52,7 @@ router.get("/", post.getPosts);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get("/:id", post.getPostById);
+router.get("/:id", authenticate, post.getPostById);
 
 /**
  * @swagger
@@ -74,6 +74,6 @@ router.get("/:id", post.getPostById);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.post("/", post.addNewPost);
+router.post("/", authenticate, post.addNewPost);
 
 module.exports = router;
