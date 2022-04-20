@@ -9,7 +9,14 @@ GET http://localhost:4000/
 
 
 GET http://localhost:4000/post
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWE4YzE2ODVhZDZhZTM1NGJiZjQzMCIsImlhdCI6MTY1MDEwODkzNywiZXhwIjoxNjUwMTEyNTM3fQ.M3tlyFXkU7Qc1Jo_vfck5hQnJEu_PxqPftmFoDtnW5E
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
+###
+
+###
+
+
+GET http://localhost:4000/item
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
 ###
 
 
@@ -19,12 +26,29 @@ GET http://localhost:4000/post/62557ee28a121576951e3127
 
 
 POST http://localhost:4000/post
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWE4YzE2ODVhZDZhZTM1NGJiZjQzMCIsImlhdCI6MTY1MDEwODkzNywiZXhwIjoxNjUwMTEyNTM3fQ.M3tlyFXkU7Qc1Jo_vfck5hQnJEu_PxqPftmFoDtnW5E
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
 Content-Type: application/json
 
 {
     "message" : "this is my authorized new post",
-    "sender" : "Maor"
+    "sender" : "neriya"
+}
+
+###
+
+
+
+POST http://localhost:4000/item
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
+Content-Type: application/json
+
+{
+    "itemname": "Gaming Mouse",
+    "itemdescription": "Ergonomic mouse comfortable to use",
+    "itemprice": 10,
+    "itemrating": 8.6,
+    "itemquantity": 20,
+    "itempictures": ["pic1.png"]
 }
 
 ###
@@ -33,11 +57,11 @@ POST http://localhost:4000/auth/register
 Content-Type: application/json
 
 {
-    "firstname" :"matan",
-    "lastname" :"sofer" ,
-    "email" : "a@a.com",
+    "firstname" :"neriya",
+    "lastname" :"zudi" ,
+    "email" : "neriyazudi@gmail.com",
     "password" : "12345", 
-    "isadmin":false 
+    "isadmin":true 
 }
 
 ###
@@ -47,7 +71,7 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-    "email" : "a@a.com",
+    "email" : "neriyazudi@gmail.com",
     "password" : "12345"
 }
 

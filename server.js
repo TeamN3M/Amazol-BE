@@ -46,6 +46,9 @@ app.use("/post", postRouters);
 const authRouters = require("./routers/auth_routes");
 app.use("/auth", authRouters);
 
+const itemRouters = require("./routers/item_routes");
+app.use("/item", itemRouters);
+
 // app.listen(port, () => {
 //   console.log(`Listening on port ${port}`);
 // });

@@ -7,7 +7,7 @@ const getPosts = async (req, res) => {
   } catch (err) {
     res.status(400).send({
       status: "fail",
-      error: err.message,
+      error: err.message
     });
   }
 };
@@ -18,7 +18,7 @@ const getPostById = async (req, res) => {
   } catch (err) {
     res.status(400).send({
       status: "fail",
-      error: err.message,
+      error: err.message
     });
   }
 };
@@ -29,14 +29,14 @@ const addNewPost = (req, res) => {
 
   const post = Post({
     message: req.body.message,
-    sender: sender,
+    sender: sender
   });
 
   post.save((error, newPost) => {
     if (error) {
       res.status(400).send({
         status: "fail",
-        error: error.message,
+        error: error.message
       });
     } else {
       res.status(200).send(newPost);
