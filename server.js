@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const dotnev = require("dotenv").config();
 const bodyParser = require("body-parser");
+const cros = require("cors");
+
 const app = express();
 
 if (process.env.NODE_ENV == "development") {
@@ -22,6 +24,12 @@ if (process.env.NODE_ENV == "development") {
   const specs = swaggerJsDoc(options);
   app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 }
+
+app.use(
+  cros({
+    origin: "*"
+  })
+);
 
 const mongoose = require("mongoose");
 app.use(bodyParser.urlencoded({ extended: true, limit: "1m" }));

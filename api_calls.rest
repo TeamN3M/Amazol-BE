@@ -10,13 +10,20 @@ GET http://localhost:4000/
 
 GET http://localhost:4000/post
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
-###
+
 
 ###
 
 
 GET http://localhost:4000/item
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
+###
+
+###
+
+
+GET http://localhost:4000/auth
+
 ###
 
 

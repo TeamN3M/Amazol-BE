@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const sendError = (res, code, msg) => {
   return res.status(code).send({
     status: "fail",
-    error: msg,
+    error: msg
   });
 };
 
@@ -22,7 +22,7 @@ const register = async (req, res) => {
     if (exists != null) {
       return res.status(400).send({
         status: "fail",
-        error: "user exists",
+        error: "user exists"
       });
     }
     const salt = await bcrypt.genSalt(10);
@@ -33,14 +33,14 @@ const register = async (req, res) => {
       last_name: lastname,
       email: email,
       password: hashPwd,
-      isAdmin: isadmin,
+      isAdmin: isadmin
     });
     newUser = await user.save();
     res.status(200).send(newUser);
   } catch (err) {
     res.status(400).send({
       status: "fail",
-      error: err.message,
+      error: err.message
     });
   }
 };
@@ -63,8 +63,7 @@ const login = async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
     );
-    res.status(200).send({'accessToken' : accessToken});
-    
+    res.status(200).send({ accessToken: accessToken, user: user });
   } catch (err) {
     return sendError(res, 400, err.message);
   }
@@ -73,12 +72,32 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
   res.status(400).send({
     status: "fail",
-    error: "not implemented",
+    error: "not implemented"
   });
+};
+
+const getUsers = async (req, res) => {
+  try {
+    users = await User.find();
+    res.status(200).send(users);
+  } catch (err) {
+    return sendError(res, 400, err.message);
+  }
+};
+
+const getUserById = async (req, res) => {
+  try {
+    users = await User.findById(req.params.id);
+    res.status(200).send(users);
+  } catch (err) {
+    return sendError(res, 400, err.message);
+  }
 };
 
 module.exports = {
   login,
   register,
   logout,
+  getUsers,
+  getUserById
 };
