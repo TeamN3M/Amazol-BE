@@ -57,6 +57,9 @@ app.use("/auth", authRouters);
 const itemRouters = require("./routers/item_routes");
 app.use("/item", itemRouters);
 
+const codeRouters = require("./routers/Code_routes");
+app.use("/code", codeRouters);
+
 // app.listen(port, () => {
 //   console.log(`Listening on port ${port}`);
 // });
