@@ -16,7 +16,7 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZj
 
 
 GET http://localhost:4000/item
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MDQ0OTUxNSwiZXhwIjoxNjUwNDUzMTE1fQ.c2Bi_y5AGOOJjy8OeyP3hu0k9rG1AO8dt-TK59R7XuE
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWZjNjUzZjc4MmE4NjcwMjRjNTEyOSIsImlhdCI6MTY1MTIyMzc4MiwiZXhwIjoxNjUzMjk3MzgyfQ.bSB4ou4mAzMoK0qlI7OqRcF0nfbadaCYMqbwOAPucVA
 ###
 
 ###
@@ -66,9 +66,9 @@ POST http://localhost:4000/auth/register
 Content-Type: application/json
 
 {
-    "firstname" :"neriya",
-    "lastname" :"zudi" ,
-    "email" : "neriyazudi@gmail.com",
+    "firstname" :"matan",
+    "lastname" :"sofer" ,
+    "email" : "matansofer@gmail.com",
     "password" : "12345", 
     "isadmin":true 
 }
@@ -81,6 +81,16 @@ Content-Type: application/json
 
 {
     "email" : "neriyazudi@gmail.com",
+    "password" : "12345"
+}
+
+###
+
+POST http://localhost:4000/auth/login
+Content-Type: application/json
+
+{
+    "email" : "matansofer@gmail.com",
     "password" : "12345"
 }
 

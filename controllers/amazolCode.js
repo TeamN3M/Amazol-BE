@@ -15,4 +15,16 @@ const getCode = async (req, res) => {
     return sendError(res, 400, err.message);
   }
 };
-module.exports = { getCode };
+
+const AuthManager = async (req, res) => {
+  const code = req.body.code;
+  if (code == null) return sendError(res, 400, "no code");
+  try {
+    if (code != process.env.AmazolManagerCode) {
+      return sendError(res, 400, "wrong code");
+    }
+  } catch (err) {
+    return sendError(res, 400, err.message);
+  }
+};
+module.exports = { getCode, AuthManager };
