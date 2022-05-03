@@ -3,10 +3,10 @@ const router = express.Router();
 const item = require("../controllers/items");
 const authenticate = require("../common/auth_middleware");
 
-router.get("/", authenticate, item.getItems);
+router.get("/", item.getItems);
 
-router.get("/:id", authenticate, item.getItemById);
+router.get("/:id", item.getItemById);
 
-router.post("/", authenticate, item.addNewItem);
+router.post("/", item.addNewItem);
 
 module.exports = router;

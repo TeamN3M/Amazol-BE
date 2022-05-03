@@ -30,7 +30,7 @@ const authenticate = require("../common/auth_middleware");
  *         sender: '123456'
  */
 
-router.get("/", authenticate, post.getPosts);
+router.get("/", post.getPosts);
 /**
  * @swagger
  * /post/{id}:
@@ -52,7 +52,7 @@ router.get("/", authenticate, post.getPosts);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get("/:id", authenticate, post.getPostById);
+router.get("/:id", post.getPostById);
 
 /**
  * @swagger
@@ -74,6 +74,6 @@ router.get("/:id", authenticate, post.getPostById);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.post("/", authenticate, post.addNewPost);
+router.post("/", post.addNewPost);
 
 module.exports = router;

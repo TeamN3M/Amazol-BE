@@ -28,13 +28,15 @@ const getItemById = async (req, res) => {
 const addNewItem = async (req, res) => {
   console.log("addNewItem " + req.body.message);
 
-  const itemname = req.body.itemname;
-  const itemdescription = req.body.itemdescription;
-  const itemprice = req.body.itemprice;
-  const itemrating = req.body.itemrating;
-  const itemquantity = req.body.itemquantity;
-  const itempictures = req.body.itempictures;
-  manager = req.user.id;
+  const itemname = req.body.item_name;
+  const itemdescription = req.body.item_description;
+  const itemprice = req.body.item_price;
+  const itemrating = req.body.item_rating;
+  const itemquantity = req.body.item_quantity;
+  const isAvailable = req.body.isAvailable;
+  const itempictures = req.body.item_pictures;
+
+  // manager = req.user.id;
 
   const item = Item({
     item_name: itemname,
@@ -42,6 +44,7 @@ const addNewItem = async (req, res) => {
     item_price: itemprice,
     item_rating: itemrating,
     item_quantity: itemquantity,
+    isAvailable: isAvailable,
     item_pictures: itempictures
   });
   try {

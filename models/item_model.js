@@ -22,6 +22,10 @@ const itemSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
+    isAvailable: {
+      type: Boolean,
+      required: true
+    },
     item_pictures: [{}]
   },
   { timestamps: true }
