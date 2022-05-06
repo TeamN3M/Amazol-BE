@@ -29,7 +29,11 @@ GET http://localhost:4000/auth
 GET http://localhost:4000/code
 
 ###
-GET http://localhost:4000/post/6255a9c564005d703791e918
+GET http://localhost:4000/post/625fc653f782a867024c5129
+
+###
+###
+GET http://localhost:4000/cart/6255a9c564005d703791e918
 
 ###
 

@@ -17,9 +17,10 @@ const getItems = async (req, res) => {
 };
 
 const getItemById = async (req, res) => {
+  console.log("item id ", req.params.id);
   try {
-    items = await Item.findById(req.params.id);
-    res.status(200).send(items);
+    item = await Item.findById(req.params.id);
+    res.status(200).send(item);
   } catch (err) {
     return sendError(res, 400, err.message);
   }
@@ -48,8 +49,8 @@ const addNewItem = async (req, res) => {
     item_pictures: itempictures
   });
   try {
-    newPost = await item.save();
-    res.status(200).send(newPost);
+    newItem = await item.save();
+    res.status(200).send(newItem);
   } catch (err) {
     return sendError(res, 400, err.message);
   }

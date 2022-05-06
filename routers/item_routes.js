@@ -5,7 +5,7 @@ const authenticate = require("../common/auth_middleware");
 
 router.get("/", item.getItems);
 
-router.get("/:id", item.getItemById);
+router.get("findItem/:id", item.getItemById);
 
 router.post("/", item.addNewItem);
 

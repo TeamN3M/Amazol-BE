@@ -26,7 +26,10 @@ const itemSchema = new mongoose.Schema(
       type: Boolean,
       required: true
     },
-    item_pictures: [{}]
+    item_pictures: {
+      type: Array,
+      required: true
+    }
   },
   { timestamps: true }
 );
