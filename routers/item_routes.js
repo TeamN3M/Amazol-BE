@@ -9,4 +9,6 @@ router.get("findItem/:id", item.getItemById);
 
 router.post("/", item.addNewItem);
 
+router.put("/updateItem/:id", item.updateItem);
+
 module.exports = router;

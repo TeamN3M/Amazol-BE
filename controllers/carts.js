@@ -57,6 +57,7 @@ const deleteCart = async (req, res) => {
     return sendError(res, 500, "Error in cart ID");
   }
 };
+
 const findUserCart = async (req, res) => {
   const cid = req.params.id;
   console.log("customer ", cid);

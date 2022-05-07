@@ -56,4 +56,30 @@ const addNewItem = async (req, res) => {
   }
 };
 
-module.exports = { getItems, addNewItem, getItemById };
+
+const updateItem = async (req, res) => {
+  const item_id = req.params.id;
+  console.log("item ID ", item_id);
+  if (item_id) {
+    const updatedItem = req.body.item;
+    try {
+      const updateItem = await Item.findByIdAndUpdate(
+        item_id,
+        { $set: { item_name: updatedItem.item_name,
+           item_description: updatedItem.item_description,
+          item_price: updatedItem.item_price,
+            item_rating: updatedItem.item_rating,
+            item_quantity: updatedItem.item_quantity,
+            isAvailable: updatedItem.isAvailable,
+            item_pictures: updatedItem.item_pictures,
+        }}
+      );
+      res.status(200).json(updateItem);
+    } catch (err) {
+      return sendError(res, 400, err.message);
+    }
+  } else {
+    return sendError(res, 500, "Error in cart ID");
+  }
+};
+module.exports = { getItems, addNewItem, getItemById ,updateItem};
