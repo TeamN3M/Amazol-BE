@@ -66,11 +66,13 @@ const findUserCart = async (req, res) => {
     try {
       Cart.findOne({ customer_id: cid }, function (err, docs) {
         if (err) {
-          console.log(err);
         } else {
           userCart = docs;
-          console.log(userCart);
-          res.status(200).json(userCart);
+          if (userCart !== null) {
+            res.status(200).json(userCart);
+          } else {
+            res.status(500).send("no cart found");
+          }
         }
       });
     } catch (err) {
