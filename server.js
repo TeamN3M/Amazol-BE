@@ -54,6 +54,9 @@ app.use("/post", postRouters);
 const authRouters = require("./routers/auth_routes");
 app.use("/auth", authRouters);
 
+const userRouters = require("./routers/user_routes");
+app.use("/user", userRouters);
+
 const itemRouters = require("./routers/item_routes");
 app.use("/item", itemRouters);
 

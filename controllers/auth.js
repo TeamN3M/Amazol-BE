@@ -2,6 +2,7 @@ const User = require("../models/user_model");
 const bcrypt = require("bcrypt");
 const { use } = require("../routers");
 const jwt = require("jsonwebtoken");
+const { removePasswordFromUserRes } = require("../helpers");
 
 const sendError = (res, code, msg) => {
   return res.status(code).send({
@@ -84,6 +85,21 @@ const getUsers = async (req, res) => {
     return sendError(res, 400, err.message);
   }
 };
+const getUser = async (req, res) => {
+  const userId = req.user.id;
+  c;
+  if (userId) {
+    try {
+      const user = await User.findOne({ _id: userId });
+      const editedUser = removePasswordFromUserRes(user);
+      res.status(200).json({ user: editedUser });
+    } catch (err) {
+      res.status(500).json({ err, msg: "Error fetching user" });
+    }
+  } else {
+    res.status(400).json("User id not found");
+  }
+};
 
 const getUserById = async (req, res) => {
   try {
@@ -99,5 +115,6 @@ module.exports = {
   register,
   logout,
   getUsers,
+  getUser,
   getUserById
 };
