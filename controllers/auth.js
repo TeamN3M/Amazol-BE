@@ -87,7 +87,6 @@ const getUsers = async (req, res) => {
 };
 const getUser = async (req, res) => {
   const userId = req.user.id;
-  c;
   if (userId) {
     try {
       const user = await User.findOne({ _id: userId });

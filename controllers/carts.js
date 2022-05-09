@@ -60,22 +60,19 @@ const deleteCart = async (req, res) => {
 
 const findUserCart = async (req, res) => {
   const cid = req.params.id;
+  let userCart;
   console.log("customer ", cid);
   if (cid) {
     try {
-      let userCart;
-      const result = await Cart.findOne(
-        { customer_id: cid },
-        function (err, docs) {
-          if (err) {
-            console.log(err);
-          } else {
-            userCart = docs;
-          }
+      Cart.findOne({ customer_id: cid }, function (err, docs) {
+        if (err) {
+          console.log(err);
+        } else {
+          userCart = docs;
+          console.log(userCart);
+          res.status(200).json(userCart);
         }
-      );
-      console.log(userCart);
-      res.status(200).json(userCart);
+      });
     } catch (err) {
       return sendError(res, 400, err.message);
     }
