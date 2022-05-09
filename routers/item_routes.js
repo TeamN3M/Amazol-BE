@@ -4,7 +4,7 @@ const item = require("../controllers/items");
 
 router.get("/", item.getItems);
 
-router.get("findItem/:id", item.getItemById);
+router.get("/findItem/:id", item.getItemById);
 
 router.post("/", item.addNewItem);
 
