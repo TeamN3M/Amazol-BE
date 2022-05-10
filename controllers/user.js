@@ -62,11 +62,57 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ err, msg: "Error while updating." });
   }
 };
+const updateUserInfo = async (req, res) => {
+  const userID = req.body.id;
+  const fname = req.body.first_name;
+  const lname = req.body.last_name;
+  const email = req.body.email;
+  const pass = req.body.password;
+  if (pass !== "") {
+    const salt = await bcrypt.genSalt(10);
+    const newPassword = await bcrypt.hash(pass, salt);
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        userID,
+        {
+          $set: {
+            first_name: fname,
+            last_name: lname,
+            email: email,
+            password: newPassword
+          }
+        },
+        {
+          new: true
+        }
+      );
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(500).json({ err, msg: "Error while updating." });
+    }
+  } else {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        userID,
+        {
+          $set: { first_name: fname, last_name: lname, email: email }
+        },
+        {
+          new: true
+        }
+      );
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(500).json({ err, msg: "Error while updating." });
+    }
+  }
+};
 
 module.exports = {
   deleteUser,
   findUser,
   getAllUsers,
   resetPassword,
-  findUserByEmail
+  findUserByEmail,
+  updateUserInfo
 };

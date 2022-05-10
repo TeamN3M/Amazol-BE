@@ -8,5 +8,6 @@ router.get("/findUser/:id", authenticate, User.findUser);
 router.delete("/deleteUser", User.deleteUser);
 router.get("/findUserByEmail/:email", User.findUserByEmail);
 router.put("/resetPassword", User.resetPassword);
+router.put("/updateInfo", authenticate, User.updateUserInfo);
 
 module.exports = router;

@@ -66,6 +66,9 @@ app.use("/code", codeRouters);
 const cartRouters = require("./routers/cart_routes");
 app.use("/cart", cartRouters);
 
+const addressRouters = require("./routers/address_routes");
+app.use("/address", addressRouters);
+
 // app.listen(port, () => {
 //   console.log(`Listening on port ${port}`);
 // });
