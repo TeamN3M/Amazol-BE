@@ -1,4 +1,5 @@
 const User = require("../models/user_model");
+const bcrypt = require("bcrypt");
 const { removePasswordFromUserRes } = require("../helpers");
 
 const deleteUser = async (req, res) => {
@@ -21,6 +22,15 @@ const findUser = async (req, res) => {
     res.status(500).json({ err, msg: "can't find user" });
   }
 };
+const findUserByEmail = async (req, res) => {
+  const email = req.params.email;
+  const exists = await User.findOne({ email: email });
+  if (exists != null) {
+    res.status(200).send(exists._id);
+  } else {
+    res.status(500).json({ msg: "can't find user" });
+  }
+};
 
 const getAllUsers = async (req, res) => {
   try {
@@ -31,5 +41,32 @@ const getAllUsers = async (req, res) => {
     res.status(500).json({ err, msg: "can't fetch users" });
   }
 };
+const resetPassword = async (req, res) => {
+  const userID = req.body.id;
+  const password = req.body.password;
+  const salt = await bcrypt.genSalt(10);
+  const newPassword = await bcrypt.hash(password, salt);
 
-module.exports = { deleteUser, findUser, getAllUsers };
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      userID,
+      {
+        $set: { password: newPassword }
+      },
+      {
+        new: true
+      }
+    );
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ err, msg: "Error while updating." });
+  }
+};
+
+module.exports = {
+  deleteUser,
+  findUser,
+  getAllUsers,
+  resetPassword,
+  findUserByEmail
+};
