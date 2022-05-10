@@ -1,4 +1,5 @@
-const Credit = require("../models/");
+const { findOne } = require("../models/address_model");
+const Credit = require("../models/credit_model");
 
 const sendError = (res, code, msg) => {
   return res.status(code).send({
@@ -8,70 +9,74 @@ const sendError = (res, code, msg) => {
 };
 const addCredit = async (req, res) => {
   const cid = req.body.customer_id;
-  const itemsArray = req.body.items;
+  const name = req.body.name;
+  const number = req.body.card_number;
+  const date = req.body.date;
+  const code = req.body.cvv;
 
-  const newCart = Cart({
+  const newCredit = Credit({
     customer_id: cid,
-    items: itemsArray
+    name: name,
+    card_number: number,
+    date: date,
+    cvv: code
   });
 
   try {
-    const cart = await newCart.save();
-    res.status(200).json(cart);
+    const credit = await newCredit.save();
+    res.status(200).json(credit);
   } catch (err) {
     return sendError(res, 400, err.message);
   }
 };
 
-const updateCart = async (req, res) => {
-  const cart_id = req.params.id;
-  console.log("cart ID ", cart_id);
-  if (cart_id) {
-    const cid = req.body.customer_id;
-    const itemsArray = req.body.items;
+const updateCredit = async (req, res) => {
+  const creditUser = await Credit.findOne({
+    customer_id: req.body.customer_id
+  });
 
+  if (creditUser) {
+    const cid = req.body.customer_id;
+    const name = req.body.name;
+    const number = req.body.card_number;
+    const date = req.body.date;
+    const code = req.body.cvv;
     try {
-      const updateCart = await Cart.findByIdAndUpdate(
-        cart_id,
-        { $set: { customer_id: cid, items: itemsArray } },
+      const updatesCredit = await Credit.findByIdAndUpdate(
+        creditUser.id,
+        {
+          $set: {
+            customer_id: cid,
+            name: name,
+            card_number: number,
+            date: date,
+            cvv: code
+          }
+        },
         { new: true }
       );
-      res.status(200).json(updateCart);
+      res.status(200).json(updatesCredit);
     } catch (err) {
       return sendError(res, 400, err.message);
     }
   } else {
-    return sendError(res, 500, "Error in cart ID");
-  }
-};
-const deleteCart = async (req, res) => {
-  const cart_id = req.params.id;
-  if (cart_id) {
-    try {
-      await Cart.findByIdAndDelete(cart_id);
-      res.status(200).json("delete cart");
-    } catch (err) {
-      return sendError(res, 400, "Error to delete cart");
-    }
-  } else {
-    return sendError(res, 500, "Error in cart ID");
+    return sendError(res, 500, "Error in credit card ID");
   }
 };
 
-const findUserCart = async (req, res) => {
+const findUserCredit = async (req, res) => {
   const cid = req.params.id;
-  let userCart;
-  console.log("customer ", cid);
+  let userCredit;
   if (cid) {
     try {
-      Cart.findOne({ customer_id: cid }, function (err, docs) {
+      Credit.findOne({ customer_id: cid }, function (err, docs) {
         if (err) {
         } else {
-          userCart = docs;
-          if (userCart !== null) {
-            res.status(200).json(userCart);
+          userCredit = docs;
+          if (userCredit !== null) {
+            res.status(200).json(userCredit);
           } else {
-            res.status(500).send("no cart found");
+            res.status(500).send("no credit card found");
           }
         }
       });
@@ -82,11 +87,9 @@ const findUserCart = async (req, res) => {
     return sendError(res, 500, "Error in cart ID");
   }
 };
-const getCarts = async (req, res) => {
-  try {
-    carts = await Cart.find().sort({ createdAt: -1 });
-    res.status(200).send(carts);
-  } catch (err) {
-    return sendError(res, 400, err.message);
-  }
+
+module.exports = {
+  addCredit,
+  updateCredit,
+  findUserCredit
 };
