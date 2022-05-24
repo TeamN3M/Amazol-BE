@@ -69,6 +69,9 @@ app.use("/cart", cartRouters);
 const orderRouters = require("./routers/order-routes");
 app.use("/orders", orderRouters);
 
+const deliveryRouters = require("./routers/delivery_routes");
+app.use("/delivery", deliveryRouters);
+
 const addressRouters = require("./routers/address_routes");
 app.use("/address", addressRouters);
 
