@@ -66,27 +66,13 @@ app.use("/code", codeRouters);
 const cartRouters = require("./routers/cart_routes");
 app.use("/cart", cartRouters);
 
+const orderRouters = require("./routers/order-routes");
+app.use("/orders", orderRouters);
+
 const addressRouters = require("./routers/address_routes");
 app.use("/address", addressRouters);
 
 const creditRouters = require("./routers/credit_routes");
 app.use("/credit", creditRouters);
-
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("build"));
-//   app.get("*", (req) => {
-// req.sendFile(path.resolve(__dirname, "build", "index.html"));
-
-//   });
-// }
-
-// app.listen(port, (err) => {
-//   if (err) console.log("ERROR!", err);
-//   console.log(`Listening on port ${port}`);
-// });
 
 module.exports = app;
