@@ -25,7 +25,6 @@ const addCart = async (req, res) => {
 
 const updateCart = async (req, res) => {
   const cart_id = req.params.id;
-  // console.log("cart ID ", cart_id);
   if (cart_id) {
     const cid = req.body.customer_id;
     const itemsArray = req.body.items;
@@ -61,7 +60,6 @@ const deleteCart = async (req, res) => {
 const findUserCart = async (req, res) => {
   const cid = req.params.id;
   let userCart;
-  // console.log("customer ", cid);
   if (cid) {
     try {
       Cart.findOne({ customer_id: cid }, function (err, docs) {
