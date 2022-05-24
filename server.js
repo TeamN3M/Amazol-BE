@@ -81,4 +81,7 @@ app.use("/address", addressRouters);
 const creditRouters = require("./routers/credit_routes");
 app.use("/credit", creditRouters);
 
+const reviewRouters = require("./routers/review_routes");
+app.use("/review", reviewRouters);
+
 module.exports = app;
