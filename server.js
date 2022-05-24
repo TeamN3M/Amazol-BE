@@ -66,6 +66,9 @@ app.use("/code", codeRouters);
 const cartRouters = require("./routers/cart_routes");
 app.use("/cart", cartRouters);
 
+const favoritesRouters = require("./routers/favorites_routes");
+app.use("/favorites", favoritesRouters);
+
 const orderRouters = require("./routers/order-routes");
 app.use("/orders", orderRouters);
 
