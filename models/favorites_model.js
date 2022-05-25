@@ -24,6 +24,10 @@ const favoritesSchema = new mongoose.Schema(
         item_rating: {
           type: Number,
           required: false
+        },
+        item_pictures: {
+          type: Array,
+          required: true
         }
       }
     ]

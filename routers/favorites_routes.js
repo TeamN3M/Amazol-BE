@@ -12,4 +12,6 @@ router.delete("/:id", favorites.deleteFavorites);
 
 router.put("/updateFavorites/:id", favorites.updateFavorites);
 
+router.put("/addItemFavorites", favorites.addItemToFavorites);
+
 module.exports = router;

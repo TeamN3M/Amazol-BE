@@ -23,6 +23,31 @@ const addFavorites = async (req, res) => {
   }
 };
 
+const addItemToFavorites = async (req, res) => {
+  const cid = req.body.customer_id;
+  const item = req.body.item;
+
+  const userFavorites = await Favorites.findOne({ customer_id: cid });
+  const indexOfObject = userFavorites.items.findIndex((itemKey) => {
+    return itemKey.item_id === item.item_id;
+  });
+  if (indexOfObject > -1) {
+    return sendError(res, 500, "item already in favorites");
+  } else {
+    userFavorites.items.push(item);
+    try {
+      const updateFavorites = await Favorites.findByIdAndUpdate(
+        userFavorites._id,
+        { $set: { customer_id: cid, items: userFavorites.items } },
+        { new: true }
+      );
+      res.status(200).json(updateFavorites);
+    } catch (err) {
+      return sendError(res, 400, err.message);
+    }
+  }
+};
+
 const updateFavorites = async (req, res) => {
   const fav_id = req.params.id;
 
@@ -95,5 +120,6 @@ module.exports = {
   updateFavorites,
   deleteFavorites,
   findUserFavorites,
-  getFavorites
+  getFavorites,
+  addItemToFavorites
 };
