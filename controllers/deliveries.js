@@ -10,14 +10,10 @@ const sendError = (res, code, msg) => {
 const addDelivery = async (req, res) => {
   const date = req.body.date;
   const time = req.body.time;
-  const adrr = req.body.address;
-  const isAvailable = req.body.isAvailable;
 
   const newDelivery = Delivery({
     date: date,
-    time: time,
-    isAvailable: isAvailable,
-    address: adrr
+    time: time
   });
 
   try {
@@ -31,10 +27,14 @@ const updateDelivery = async (req, res) => {
   const delivery_id = req.params.id;
   if (delivery_id) {
     const orderId = req.body.order_id;
+    const adrr = req.body.address;
+    const isAvailable = req.body.isAvailable;
     try {
       const updateDelivery = await Delivery.findByIdAndUpdate(
         delivery_id,
-        { $set: { order_id: orderId } },
+        {
+          $set: { order_id: orderId, address: adrr, isAvailable: isAvailable }
+        },
         { new: true }
       );
       res.status(200).json(updateDelivery);
