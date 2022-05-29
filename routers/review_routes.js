@@ -6,7 +6,7 @@ router.get("/", review.getReviews);
 
 router.get("/itemReview/:item", review.findItemReviews);
 
-router.post("/", review.addReview);
+router.post("/:id", review.addReview);
 
 router.delete("/:id", review.deleteReview);
 

@@ -7,6 +7,7 @@ const sendError = (res, code, msg) => {
   });
 };
 const addReview = async (req, res) => {
+  console.log("Got a new review");
   const iid = req.body.item_id;
   const customer_name = req.body.customer_name;
   const date = req.body.date;
@@ -49,7 +50,7 @@ const findItemReviews = async (req, res) => {
   // console.log("customer ", cid);
   if (iid) {
     try {
-      Review.findOne({ item_id: iid }, function (err, docs) {
+      Review.find({ item_id: iid }, function (err, docs) {
         if (err) {
         } else {
           itemReviews = docs;
