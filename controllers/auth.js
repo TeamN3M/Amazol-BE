@@ -70,6 +70,26 @@ const login = async (req, res) => {
   }
 };
 
+const loginWithGoogle = async (req, res) => {
+  const email = req.body.email;
+
+  if (email == null) return sendError(res, 400, "wrong email");
+
+  try {
+    const user = await User.findOne({ email: email });
+    if (user == null) return sendError(res, 400, "user dosent exist");
+
+    const accessToken = await jwt.sign(
+      { id: user._id },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+    );
+    res.status(200).send({ accessToken: accessToken, user: user });
+  } catch (err) {
+    return sendError(res, 400, err.message);
+  }
+};
+
 const logout = async (req, res) => {
   res.status(400).send({
     status: "fail",
@@ -115,5 +135,6 @@ module.exports = {
   logout,
   getUsers,
   getUser,
-  getUserById
+  getUserById,
+  loginWithGoogle
 };
