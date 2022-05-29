@@ -72,8 +72,21 @@ const login = async (req, res) => {
 
 const loginWithGoogle = async (req, res) => {
   const email = req.body.email;
+  const password = req.body.password;
+  const fname = req.body.first_name;
+  const lname = req.body.last_name;
 
-  if (email == null) return sendError(res, 400, "wrong email");
+  const exists = await User.findOne({ email: email });
+  if (exists == null) {
+    const user = User({
+      first_name: fname,
+      last_name: lname,
+      email: email,
+      password: password,
+      isAdmin: false
+    });
+    newUser = await user.save();
+  }
 
   try {
     const user = await User.findOne({ email: email });
