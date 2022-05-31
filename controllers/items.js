@@ -17,7 +17,6 @@ const getItems = async (req, res) => {
 };
 
 const getItemById = async (req, res) => {
-  console.log("item id ", req.params.id);
   try {
     item = await Item.findById(req.params.id);
     res.status(200).send(item);
@@ -79,4 +78,40 @@ const updateItem = async (req, res) => {
     return sendError(res, 500, "Error in cart ID");
   }
 };
-module.exports = { getItems, addNewItem, getItemById, updateItem };
+
+const updateItemsQuantity = async (req, res) => {
+  const items = req.body.items;
+  let newItems = [];
+  if (items) {
+    for (let i = 0; i < items.length; i++) {
+      let itemID = items[i].item_id;
+      if (itemID === "0") {
+        continue;
+      }
+      let itemBeforeUpdate = await Item.findOne({ _id: itemID });
+      let newQ = itemBeforeUpdate.item_quantity - items[i].quantity;
+      if (itemBeforeUpdate) {
+        try {
+          const updateItem = await Item.findByIdAndUpdate(itemID, {
+            $set: {
+              item_quantity: newQ
+            }
+          });
+          newItems.push(updateItem);
+        } catch (err) {
+          return sendError(res, 400, err.message);
+        }
+      }
+    }
+    res.status(200).json(newItems);
+  } else {
+    return sendError(res, 500, "Error in items");
+  }
+};
+module.exports = {
+  getItems,
+  addNewItem,
+  getItemById,
+  updateItem,
+  updateItemsQuantity
+};
