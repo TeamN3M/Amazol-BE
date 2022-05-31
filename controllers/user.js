@@ -11,7 +11,6 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ err, msg: "Error while deleting." });
   }
 };
-
 const findUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -31,7 +30,6 @@ const findUserByEmail = async (req, res) => {
     res.status(500).json({ msg: "can't find user" });
   }
 };
-
 const getAllUsers = async (req, res) => {
   try {
     const latestUsers = await User.find().sort({ id: -1 }).limit(10);

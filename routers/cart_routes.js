@@ -13,4 +13,6 @@ router.delete("/", cart.deleteCart);
 
 router.put("/updateCart/:id", cart.updateCart);
 
+router.put("/affiliateCart", cart.addAffiliateToCart);
+
 module.exports = router;
